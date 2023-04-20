@@ -14,3 +14,9 @@ td img {
     max-width: 150px;
     max-height: 150px;
 }
+body{
+    background-color: rgb(159, 188, 178);
+}
+h1{
+    text-align: center;
+}
