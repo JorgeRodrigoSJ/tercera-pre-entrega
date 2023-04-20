@@ -9,49 +9,49 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css" />
-  <title>Inventario de libros</title>
+  <title>Registro horas maquina</title>
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
-      <h1>Inventario de Libros</h1>
+      <h1><strong>REGISTRO</strong> MAQUINARIA</h1>
     </div>
     <div class="row">
       <div class="col m3">
         <div class="row">
-          <h3>Ingresa un libro</h3>
+          <h3>Agregue una máquina</h3>
         </div>
-        <div class="row">
-          <form class="col s12" id="formInventario">
+        <div class="row"></div> <!-- aca empieza la lista de la pantalla izq -->
+          <form class="col s12" id="formMaquinas">
             <div class="row">
               <div class="input-field col m12 s12">
-                <input id="titulo" type="text" class="validate" />
-                <label for="titulo">Título</label>
+                <input id="nombre" type="text" class="validate" />
+                <label for="nombre">Nombre</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m12 s12">
-                <input id="autor" type="text" class="validate" />
-                <label for="autor">Autor</label>
+                <input id="marca" type="text" class="validate" />
+                <label for="marca">Marca</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="isbn" type="text" class="validate" />
-                <label for="isbn">ISBN</label>
+                <input id="hsKm" type="number" class="validate" />
+                <label for="hsKm">Horas/Kilometros</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="categoria" type="text" class="validate" />
-                <label for="categoria">Categoría</label>
+                <input id="anio" type="number" class="validate" />
+                <label for="anio">Año</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="precio" type="text" class="validate" />
-                <label for="precio">Precio</label>
+                <input id="sector" type="text" class="validate" />
+                <label for="sector">Sector</label>
               </div>
             </div>
             <div class="row">
@@ -77,24 +77,24 @@
             <div class="col m12 s12">
               <span>
                 <label>
-                  <input class="with-gap" name="group" type="radio" value='titulo' checked />
-                  <span>Título</span>
+                  <input class="with-gap" name="group" type="radio" value='Nombre' checked />
+                  <span>Nombre</span>
                 </label>
                 <label>
-                  <input class="with-gap" name="group" type="radio" value='categoria' />
-                  <span>Categoría</span>
+                  <input class="with-gap" name="group" type="radio" value='marca' />
+                  <span>Marca</span>
                 </label>
                 <label>
-                  <input class="with-gap" name="group" type="radio" value='autor' />
-                  <span>Autor</span>
+                  <input class="with-gap" name="group" type="radio" value='horas/Kilometros' />
+                  <span>Horas/Kilometros</span>
                 </label>
                 <label>
-                  <input class="with-gap" name="group" type="radio" value='isbn' />
-                  <span>ISBN</span>
+                  <input class="with-gap" name="group" type="radio" value='anio' />
+                  <span>año</span>
                 </label>
                 <label>
-                  <input class="with-gap" name="group" type="radio" value='precio' />
-                  <span>Precio</span>
+                  <input class="with-gap" name="group" type="radio" value='sector' />
+                  <span>Sector</span>
                 </label>
               </span>
             </div>
@@ -104,11 +104,11 @@
         <table class="responsive-table striped" id="tabla">
           <thead>
             <tr>
-              <th>Título</th>
-              <th>Autor</th>
-              <th>ISBN</th>
-              <th>Categoría</th>
-              <th>Precio</th>
+              <th>Nombre</th>
+              <th>Marca</th>
+              <th>Horas/Kilometros</th>
+              <th>año</th>
+              <th>sector</th>
               <th></th>
             </tr>
           </thead>
