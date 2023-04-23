@@ -77,6 +77,10 @@
             <div class="col m12 s12">
               <span>
                 <label>
+                  <input class="with-gap" name="group" type="radio" value='item' checked />
+                  <span>item</span>
+                </label>
+                <label>
                   <input class="with-gap" name="group" type="radio" value='Nombre' checked />
                   <span>Nombre</span>
                 </label>
@@ -104,6 +108,7 @@
         <table class="responsive-table striped" id="tabla">
           <thead>
             <tr>
+              <th>item</th>
               <th>Nombre</th>
               <th>Marca</th>
               <th>Horas/Kilometros</th>
@@ -117,12 +122,23 @@
             <!-- Contenido dinámico -->
           </tbody>
         </table>
-
       </div>
     </div>
   </div>
   </div>
-
+  <div class="seteo">
+    <h1>Editor de Horas maquina o Kilometros</h1>
+    <div class="row g-3">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="item de la maquina" aria-label="item de la maquina">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Hs o Km actuales" aria-label="Hs o Km actuales">
+      </div>
+    </div>
+  <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+  <label class="btn btn-primary" for="btn-check">Cargar Hs o Km</label>
+  </div>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./js/main.js"></script>
