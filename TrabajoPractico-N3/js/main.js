@@ -1,4 +1,4 @@
-const titulo = document.querySelector("#titulo"),
+const sector = document.querySelector("#sector"),
   nombre = document.querySelector("#nombre"),
   marca = document.querySelector("#marca"),
   hsKm = document.querySelector("#hsKm"),//tiene el type="number"
@@ -12,14 +12,16 @@ const radios = document.querySelectorAll('input[type="radio"]');
 
 //Maquinas ya guardadas en inventario de maquinas
 const maquinaria = [{
+    item: 1,
     nombre: "Autoelevador 1",
-    marca: "Nissan",
+    marca: "Yale",
     hsKm: 30500,
     anio: 2001,
     sector: "Mantenimiento",
     img: "https://www.yale.com.ar/autoelevadores/dist/images/montacarga.png",
   },
   {
+    item: 2,
     nombre: "Camioneta",
     marca: "Reanault",
     hsKm: 6443924,
@@ -29,13 +31,24 @@ const maquinaria = [{
   },
 ];
 
+
+// Método ->  localStorage.setItem(clave, valor)
+// clave = nombre para identificar el elemento 
+// valor = valor/contenido del elemento 
+
+//Método ->  sessionStorage.setItem(clave, valor)
+// clave = nombre del elemento
+// valor = Contenido del elemento
+
+
 //Seteo variable maquinas, si LS vacio entonces maquinas = inventario
 //inicializo la variable maquinas y le asigno un valor
 let maquinas = JSON.parse(localStorage.getItem("maquinaria")) || maquinaria;
 
 
 //Constructor del objeto maquina ¡ojo que la primera esta en mayuscula!
-function Maquina(nombre, marca, hsKm, anio, sector, img) {
+function Maquina(item, nombre, marca, hsKm, anio, sector, img) {
+  this.item = maquinaria.length + 1;
   this.nombre = nombre;
   this.marca = marca;
   this.hsKm = hsKm;
@@ -45,39 +58,48 @@ function Maquina(nombre, marca, hsKm, anio, sector, img) {
   img == "" ? (this.img = `https://via.placeholder.com/150`) : (this.img = img);
 }
 
+
+console.log(maquinaria);
+
 /* Declaración de Funciones */
 //Cargar al inventario
 function cargarMaquinaria(arr, maquina) {
   arr.push(maquina);
 }
+
+
+console.log(maquinaria);
+
+
 //Funciones de LS
 function guardarLS(arr) {
   localStorage.setItem("maquinaria", JSON.stringify(arr));
 }
 
 //Función de búsqueda genérica
-// function filtrar(arr, filtro, param) {
-//   return arr.filter((el) => {
-//     /*  if (param == "precio") {
-//       return el.precio <= parseFloat(filtro);
-//     } else {
-//       return el[`${param}`].includes(filtro.toLowerCase());
-//     } */
-//     return param == "precio" ?
-//       el.precio <= parseFloat(filtro) :
-//       el[`${param}`].includes(filtro.toLowerCase());
-//   });
-// }
+function filtrar(arr, filtro, param) {
+  return arr.filter((el) => {
+    /*  if (param == "item") {
+      return el.item <= parseFloat(filtro);
+    } else {
+      return el[`${param}`].includes(filtro.toLowerCase());
+    } */
+    return param == "item" ?
+      el.item == parseFloat(filtro) :
+      el[`${param}`].includes(filtro.toLowerCase());
+  });
+}
 
 //Manipular el DOM
 function crearHtml(arr) {
   tbody.innerHTML = "";
 
   let html = "";
-  for (const item of arr) {
-    const {nombre, marca,hsKm,anio,sector,img} = item;
+  for (const elem of arr) {
+    const {item,nombre, marca,hsKm,anio,sector,img} = elem;
        
     html = `<tr>
+  <td>${item}</td>
   <td>${nombre}</td>
   <td>${marca}</td>
   <td>${hsKm}</td>
@@ -111,6 +133,7 @@ crearHtml(maquinas);
 formMaquinas.addEventListener("submit", (e) => {
   e.preventDefault();
   const nuevoMaquina = new Maquina(
+    //item.value,
     nombre.value,
     marca.value,
     hsKm.value,
@@ -144,7 +167,3 @@ for (const radio of radios) {
     }
   });
 }
-console.log(maquinas);
-
-//tengo que hacer un campo en el html para poder sumar horas o kilometros a cada maquina ya existente
-//tengo que hacer que funcione el buscador
