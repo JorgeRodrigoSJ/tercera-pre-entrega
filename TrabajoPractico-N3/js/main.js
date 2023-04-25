@@ -134,15 +134,16 @@ function crearHtml(arr) {
 const btnCargar = document.getElementById("btnCargar");
 function respuestaClick (e){
   e.preventDefault();
-  posicionArray = 1-selectoritem.value;
+  posicionArray = selectoritem.value-1;
+  console.log(posicionArray);
   console.log(maquinas[posicionArray]);
-  maquinas[posicionArray].hsKm=editor.value;
+  maquinas[posicionArray].hsKm = editor.value;
   console.log("las nuevas horas o kilometros de la maquina seleccionada son Hs/Km "+ maquinas[posicionArray].hsKm);
   //ahora tengo que pushearlas y listo
   
 }
 
-formEditor.addEventListener("submit",respuestaClick)
+formEditor.addEventListener("submit",respuestaClick);
 
 /* Fin de funciones */
 
