@@ -140,7 +140,7 @@ function respuestaClick (e){
   maquinas[posicionArray].hsKm = editor.value;
   console.log("las nuevas horas o kilometros de la maquina seleccionada son Hs/Km "+ maquinas[posicionArray].hsKm);
   //ahora tengo que pushearlas y listo
-  
+  crearHtml(maquinas);
 }
 
 formEditor.addEventListener("submit",respuestaClick);
