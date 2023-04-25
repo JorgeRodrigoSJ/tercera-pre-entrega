@@ -13,12 +13,72 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <h1><strong>REGISTRO</strong> MAQUINARIA</h1>
+  <div class="row">
+    <h1><strong>REGISTRO</strong> MAQUINARIA</h1>
+  </div>
+  <!-- búsqueda -->
+  <div class="col m1"></div>
+      <div class="col m8 s4 m7" id="contenedor">
+        <!-- Cuadro de búsqueda -->
+        <div class="row">
+          <div class="col m12 s12">
+            <i class="material-icons">search</i>
+            <div class="input-field inline">
+              <input id="search" type="search" class="validate">
+              <label for="search">Buscar</label>
+            </div>
+            <div class="col m12 s12">
+              <span>
+                <label>
+                  <input class="with-gap" name="group" type="radio" value='item' checked />
+                  <span>item</span>
+                </label>
+                <label>
+                  <input class="with-gap" name="group" type="radio" value='Nombre' checked />
+                  <span>Nombre</span>
+                </label>
+                <label>
+                  <input class="with-gap" name="group" type="radio" value='Marca' checked />
+                  <span>Marca</span>
+                </label>
+                <label>
+                  <input class="with-gap" name="group" type="radio" value='horas/kilometros' checked />
+                  <span>horas/kilometros</span>
+                </label>
+                <label>
+                  <input class="with-gap" name="group" type="radio" value='año' checked />
+                  <span>año</span>
+                </label>
+                <label>
+                  <input class="with-gap" name="group" type="radio" value='Sector' checked />
+                  <span>Sector</span>
+                </label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <div class="col m3">
+    <!-- Tabla dinamica -->
+  <table class="responsive-table striped" id="tabla">
+    <thead>
+      <tr>
+        <th>item</th>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Horas/Kilometros</th>
+        <th>año</th>
+        <th>sector</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <!-- Contenido dinámico -->
+    </tbody>
+  </table>
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col m3 ">
         <div class="row">
           <h3>Agregue una máquina</h3>
         </div>
@@ -64,80 +124,32 @@
         </div>
         </form>
       </div>
-      <div class="col m1"></div>
-      <div class="col m8 s4 m7" id="contenedor">
-        <!-- Cuadro de búsqueda -->
-        <div class="row">
-          <div class="col m12 s12">
-            <i class="material-icons">search</i>
-            <div class="input-field inline">
-              <input id="search" type="search" class="validate">
-              <label for="search">Buscar</label>
-            </div>
-            <div class="col m12 s12">
-              <span>
-                <label>
-                  <input class="with-gap" name="group" type="radio" value='item' checked />
-                  <span>item</span>
-                </label>
-                <label>
-                  <input class="with-gap" name="group" type="radio" value='Nombre' checked />
-                  <span>Nombre</span>
-                </label>
-                <label>
-                  <input class="with-gap" name="group" type="radio" value='marca' />
-                  <span>Marca</span>
-                </label>
-                <label>
-                  <input class="with-gap" name="group" type="radio" value='horas/Kilometros' />
-                  <span>Horas/Kilometros</span>
-                </label>
-                <label>
-                  <input class="with-gap" name="group" type="radio" value='anio' />
-                  <span>año</span>
-                </label>
-                <label>
-                  <input class="with-gap" name="group" type="radio" value='sector' />
-                  <span>Sector</span>
-                </label>
-              </span>
-            </div>
-
-          </div>
-        </div>
-        <table class="responsive-table striped" id="tabla">
-          <thead>
-            <tr>
-              <th>item</th>
-              <th>Nombre</th>
-              <th>Marca</th>
-              <th>Horas/Kilometros</th>
-              <th>año</th>
-              <th>sector</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody id="table-body">
-            <!-- Contenido dinámico -->
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
   </div>
+  <!-- BUSCADOR DE MAQUINA Y EDITOR -->
   <div class="seteo">
-    <h1>Editor de Horas maquina o Kilometros</h1>
-    <div class="row g-3">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="item de la maquina" aria-label="item de la maquina">
+    <h3>Editor de Horas maquina o Kilometros</h3>
+  <div class="container-fluid">
+      <div class="row ">
+        <div class="col m3 ">
+            <form class="col s12" id="formEditor">
+                <div class="row">
+                  <div class="input-field col m12 s12">
+                    <input id="selectoritem" type="number" class="validate" />
+                    <label for="selectoritem">Seleccione item a editar</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="editor" type="number" class="validate" />
+                    <label for="editor">cargue las Horas/Kilometros</label>
+                  </div>
+                </div>
+                <input type="submit" id="btnCargar" class="btn" value="Sobre Escribir hs o km a la maquina">
+              </div>
+           </form>
+        </div>
       </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Hs o Km actuales" aria-label="Hs o Km actuales">
-      </div>
-    </div>
-  <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
-  <label class="btn btn-primary" for="btn-check">Cargar Hs o Km</label>
   </div>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
