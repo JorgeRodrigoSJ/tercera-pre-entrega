@@ -53,7 +53,7 @@ let maquinas = JSON.parse(localStorage.getItem("maquinaria")) || maquinaria;
 
 //Constructor del objeto maquina ¡ojo que la primera esta en mayuscula!
 function Maquina(nombre, marca, hsKm, anio, sector, img) {
-  this.item = maquinaria.length + 1;
+  this.item = maquinas.length + 1; //aca tengo que poner un condicional para comparar si existe otro item con el mismo valor para que no se solapen
   this.nombre = nombre;
   this.marca = marca;
   this.hsKm = hsKm;
@@ -81,21 +81,56 @@ function guardarLS(arr) {
 //Función de búsqueda genérica
 function filtrar(arr, filtro, param) {
   return arr.filter((el) => {
-    /*  if (param == "item") {
+    if (param == "item") {
       return el.item == parseFloat(filtro);
     } else {
       return el[`${param}`].includes(filtro.toLowerCase());
-    } */
-    return param == "item" ?
-      el.item == parseFloat(filtro) :
-      el[`${param}`].includes(filtro.toLowerCase());
+    } 
+      // return param == "item" ?
+      // el.item == parseFloat(filtro) :
+      // el[`${param}`].includes(filtro.toLowerCase());
   });
 }
 
-//Funcion para editar las horas o kilometros actuales de la maquina
-//tengo que buscar la posicion del array restandole 1 al valor del item ingresado
-//cuando ya tenga seleccionado el array, tengo que editarle el valor nuevo de las horas o kilometros haciendo hsKm.value=nuevo valor (algo asi)
 
+
+
+
+//Listeners de búsqueda
+
+//search = document.querySelector("#search"),
+
+search.addEventListener("input", () => {
+  let nuevoFiltro = filtrar(maquinas, search.value, "item");
+  crearHtml(nuevoFiltro);
+  console.log("el valor ingresado es "+search.value);
+});
+
+
+for (const radio of radios) {
+  radio.addEventListener("change", () => {
+    if (radio.checked) {
+      search.addEventListener("input", () => { 
+        let nuevoFiltro = filtrar(maquinas, search.value, radio.value);
+        console.log("el valor es "+radio.value);
+        crearHtml(nuevoFiltro);
+      });
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//Funcion para editar las horas o kilometros actuales de la maquina
 
 
 //Manipular el DOM
@@ -141,6 +176,8 @@ function respuestaClick (e){
   console.log("las nuevas horas o kilometros de la maquina seleccionada son Hs/Km "+ maquinas[posicionArray].hsKm);
   //ahora tengo que pushearlas y listo
   crearHtml(maquinas);
+  guardarLS(maquinas);
+  formEditor.reset()//este resetea la pantalla
 }
 
 formEditor.addEventListener("submit",respuestaClick);
@@ -172,20 +209,25 @@ formMaquinas.addEventListener("submit", (e) => {
 });
 
 //Listeners de búsqueda
-search.addEventListener("input", () => {
-  let nuevoFiltro = filtrar(maquinas, search.value, "nombre");
-  crearHtml(nuevoFiltro);
-});
+// search.addEventListener("input", () => {
+//   let nuevoFiltro = filtrar(maquinas, search.value, "nombre");
+//   crearHtml(nuevoFiltro);
+// });
 
 //radio buttons
-for (const radio of radios) {
-  radio.addEventListener("change", () => {
+// for (const radio of radios) {
+//   radio.addEventListener("change", () => {
+//     if (radio.checked) {
+//       search.addEventListener("input", () => { 
+//         let nuevoFiltro = filtrar(maquinas, search.value, radio.value);
+//         crearHtml(nuevoFiltro);
+//       });
+//     }
+//   });
+// }
 
-    if (radio.checked) {
-      search.addEventListener("input", () => {
-        let nuevoFiltro = filtrar(maquinas, search.value, radio.value);
-        crearHtml(nuevoFiltro);
-      });
-    }
-  });
-}
+
+// TENGO QUE ARREGLAR:
+// LOS FILTROS (RADIOS)
+// QUE BUSQUE EN TODO EL ARRAY DE MAQUINARIAS Y maquinas
+// QUE NO SE REPITAN LOS ITEMS, TENGO QUE LOGRAR Q SEAN ITEMS INDIVIDUALES ----- https://desarrolloweb.com/articulos/1006.php
